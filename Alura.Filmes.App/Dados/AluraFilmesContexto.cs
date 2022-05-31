@@ -29,7 +29,12 @@ namespace Alura.Filmes.App.Dados {
             modelBuilder.Entity<Ator>()
                 .Property(a => a.UltimoNome)
                 .HasColumnName("last_name")
-                .HasColumnType("varchar()45")
+                .HasColumnType("varchar(45)")
+                .IsRequired();
+
+            modelBuilder.Entity<Ator>()
+                .Property<DateTime>("last_update")
+                .HasColumnType("datetime")
                 .IsRequired();
         }
 
