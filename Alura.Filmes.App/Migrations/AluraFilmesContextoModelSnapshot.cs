@@ -34,7 +34,7 @@ namespace Alura.Filmes.App.Migrations
                     b.Property<string>("UltimoNome")
                         .IsRequired()
                         .HasColumnName("last_name")
-                        .HasColumnType("varchar(45)");
+                        .HasColumnType("varchar()45");
 
                     b.HasKey("Id");
 
