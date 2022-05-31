@@ -11,8 +11,8 @@ using System;
 namespace Alura.Filmes.App.Migrations
 {
     [DbContext(typeof(AluraFilmesContexto))]
-    [Migration("20220531175324_Actor")]
-    partial class Actor
+    [Migration("20220531183153_Actors")]
+    partial class Actors
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,10 +35,12 @@ namespace Alura.Filmes.App.Migrations
                     b.Property<string>("UltimoNome")
                         .IsRequired()
                         .HasColumnName("last_name")
-                        .HasColumnType("varchar()45");
+                        .HasColumnType("varchar(45)");
 
                     b.Property<DateTime>("last_update")
-                        .HasColumnType("datetime");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
 
