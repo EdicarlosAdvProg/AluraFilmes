@@ -3,25 +3,23 @@ using Alura.Filmes.App.Dados;
 using System.Linq;
 using Alura.Filmes.App.Negocio;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alura.Filmes.App {
     class Program {
         static void Main(string[] args) {
 
-            using(var context=new AluraFilmesContexto()) {
-                
+            using (var context = new AluraFilmesContexto()) {
+
                 context.LogSQLToConsole();
 
-                var actor = new Ator();
-                actor.PrimeiroNome = "Tom";
-                actor.UltimoNome = "Hanks";
+                var atores = context.Atores
+                    .OrderByDescending(a => EF.Property<DateTime>(a, "last_update"))
+                    .Take(10);
 
-                //context.Entry(actor)
-                //    .Property("last_update")
-                //    .CurrentValue = DateTime.Now;
-
-                context.Atores.Add(actor);
-                context.SaveChanges();
+                foreach (var a in atores) {
+                    Console.WriteLine(a + " - " + context.Entry(a).Property("last_update").CurrentValue);
+                }
             }
         }
     }

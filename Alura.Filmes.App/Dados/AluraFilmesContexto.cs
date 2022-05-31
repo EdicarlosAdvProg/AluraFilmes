@@ -42,7 +42,7 @@ namespace Alura.Filmes.App.Dados {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder
                 .UseSqlServer("Data Source=DESKTOP-H77C52F\\SQLEXPRESS;" +
-                "Initial Catalog=AluraFilmesTST;" +
+                "Initial Catalog=AluraFilmes;" +
                 "User ID=sa;Password=1a5w2s3d;" +
                 "Connect Timeout=30;" +
                 "Encrypt=False;" +
