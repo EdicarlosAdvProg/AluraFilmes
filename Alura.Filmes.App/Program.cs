@@ -13,18 +13,12 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                var idiomas=context.Idiomas
-                    .Include(i => i.FilmesFalados);
+                Ator ator = new Ator() { PrimeiroNome = "Emma", UltimoNome = "Watson" };
 
-                foreach(var item in idiomas) {
-                    
-                    Console.WriteLine(item);
+                context.Atores.Add(ator);
 
-                    foreach(var filme in item.FilmesFalados) {
-                        Console.WriteLine(filme);
-                    }
-                    Console.WriteLine();
-                }
+                context.SaveChanges();
+
             }
         }
     }

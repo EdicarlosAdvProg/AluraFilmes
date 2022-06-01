@@ -139,6 +139,14 @@
     <Compile Include="Migrations\20220601185637_Restante.designer.cs">
       <DependentUpon>20220601185637_Restante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20220601224214_AtorIndiceUltimoNome.cs" />
+    <Compile Include="Migrations\20220601224214_AtorIndiceUltimoNome.designer.cs">
+      <DependentUpon>20220601224214_AtorIndiceUltimoNome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20220601225830_UniqueAtorPrimeiroUltimoNome.cs" />
+    <Compile Include="Migrations\20220601225830_UniqueAtorPrimeiroUltimoNome.designer.cs">
+      <DependentUpon>20220601225830_UniqueAtorPrimeiroUltimoNome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AluraFilmesContextoModelSnapshot.cs" />
     <Compile Include="Negocio\Ator.cs" />
     <Compile Include="Negocio\Filme.cs" />

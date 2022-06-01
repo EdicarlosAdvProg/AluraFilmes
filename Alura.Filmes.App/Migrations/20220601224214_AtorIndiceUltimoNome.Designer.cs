@@ -11,9 +11,10 @@ using System;
 namespace Alura.Filmes.App.Migrations
 {
     [DbContext(typeof(AluraFilmesContexto))]
-    partial class AluraFilmesContextoModelSnapshot : ModelSnapshot
+    [Migration("20220601224214_AtorIndiceUltimoNome")]
+    partial class AtorIndiceUltimoNome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,8 +43,6 @@ namespace Alura.Filmes.App.Migrations
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("PrimeiroNome", "UltimoNome");
 
                     b.HasIndex("UltimoNome")
                         .HasName("idx_actor_last_name");
