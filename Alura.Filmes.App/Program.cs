@@ -13,12 +13,10 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                var atores = context.Atores
-                    .OrderByDescending(a => EF.Property<DateTime>(a, "last_update"))
-                    .Take(10);
+                var filmes = context.Filmes.ToList();
 
-                foreach (var a in atores) {
-                    Console.WriteLine(a + " - " + context.Entry(a).Property("last_update").CurrentValue);
+                foreach (var filme in filmes) {
+                    Console.WriteLine(filme);
                 }
             }
         }
