@@ -13,11 +13,17 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                var filmes = context.Filmes.ToList();
+                foreach(var item in context.Elenco) {
 
-                foreach (var filme in filmes) {
-                    Console.WriteLine(filme);
+                    var entidade = context.Entry(item);
+                    var filmeId = entidade.Property("film_id").CurrentValue;
+                    var actorId = entidade.Property("actor_id").CurrentValue;
+                    var lastUpd = entidade.Property("last_update").CurrentValue;
+
+                    Console.WriteLine($"Filme {filmeId}; Ator {actorId}; LastUpdate {lastUpd}");
                 }
+
+ 
             }
         }
     }

@@ -1,21 +1,18 @@
 ﻿using Alura.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alura.Filmes.App.Dados {
     public class AluraFilmesContexto : DbContext {
 
         public DbSet<Ator> Atores { get; set; }
         public DbSet<Filme> Filmes { get; set; }
+        public DbSet<FilmeAtor> Elenco { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             modelBuilder.ApplyConfiguration(new AtorConfiguration());
             modelBuilder.ApplyConfiguration(new FilmeConfiguration());
+            modelBuilder.ApplyConfiguration(new FilmeAtorConfiguration());
 
         }
 
