@@ -31,8 +31,7 @@ namespace Alura.Filmes.App.Dados {
 
             builder
                 .Property(a => a.Duracao)
-                .HasColumnName("length")
-                .HasColumnType("samallint");
+                .HasColumnName("length");
 
             builder
                 .Property<DateTime>("last_update")
