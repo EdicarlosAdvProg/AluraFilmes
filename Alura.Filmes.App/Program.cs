@@ -4,6 +4,7 @@ using System.Linq;
 using Alura.Filmes.App.Negocio;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Alura.Filmes.App.Negocio.Enuns;
 
 namespace Alura.Filmes.App {
     class Program {
@@ -13,15 +14,11 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                var filme = new Filme();
-                filme.Titulo = "Senhor do Aneis";
-                filme.Duracao = 120;
-                filme.AnoLancamento = "2000";
-                filme.Classificacao = "Qualquer";
-                filme.IdiomaFalado = context.Idiomas.First();
+                var a = ClassificacaoIndicativa.Livre;
+                string b = "PG-13";
 
-                context.Filmes.Add(filme);
-                context.SaveChanges();
+                Console.WriteLine(a.ParaString());
+                Console.WriteLine(b.ParaValor());
 
             }
         }
