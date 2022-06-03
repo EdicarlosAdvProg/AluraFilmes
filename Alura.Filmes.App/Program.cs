@@ -5,6 +5,7 @@ using Alura.Filmes.App.Negocio;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Alura.Filmes.App.Negocio.Enuns;
+using System.Data.SqlClient;
 
 namespace Alura.Filmes.App {
     class Program {
@@ -14,15 +15,22 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                string sql = @"SELECT a.* FROM actor a INNER JOIN
-                            top5_most_starred_actors f On a.actor_id = f.actor_id";
+                string categ = "Action";
 
-                var atoresMaisAtuantes = context.Atores.FromSql(sql)
-                    .Include(a=>a.Filmes);
-                    
-                foreach(var ator in atoresMaisAtuantes) {
-                    Console.WriteLine($"O ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmes.Count} filmes");
-                }
+                var paramCateg = new SqlParameter("category_name", categ);
+
+                var paramTotal = new SqlParameter {
+                    ParameterName = "@total_actors",
+                    Size = 4,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                context.Database
+                    .ExecuteSqlCommand("total_actors_from_given_category @category_name, @total_actors OUT",
+                    paramCateg,
+                    paramTotal);
+
+                Console.WriteLine($"O total de atores na categoria {categ} é de {paramTotal.Value}");
                 
             }
         }
