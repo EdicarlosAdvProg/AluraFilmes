@@ -15,23 +15,15 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                string categ = "Action";
+                string sql = "INSERT INTO language (name) VALUES ('Language1'), ('Language2'), ('Language3')";
+                var registros= context.Database.ExecuteSqlCommand(sql);
+                Console.WriteLine($"O total de registros afetados é  {registros}");
 
-                var paramCateg = new SqlParameter("category_name", categ);
+                string deleteSQL = "DELETE FROM language WHERE name LIKE 'Language%'";
+                registros = context.Database.ExecuteSqlCommand(deleteSQL);
+                Console.WriteLine($"O total de registros afetados é  {registros}");
 
-                var paramTotal = new SqlParameter {
-                    ParameterName = "@total_actors",
-                    Size = 4,
-                    Direction = System.Data.ParameterDirection.Output
-                };
 
-                context.Database
-                    .ExecuteSqlCommand("total_actors_from_given_category @category_name, @total_actors OUT",
-                    paramCateg,
-                    paramTotal);
-
-                Console.WriteLine($"O total de atores na categoria {categ} é de {paramTotal.Value}");
-                
             }
         }
     }
