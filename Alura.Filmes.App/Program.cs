@@ -14,16 +14,19 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                Console.WriteLine("Clientes:");
-                foreach(var cliente in context.Clientes) {
-                    Console.WriteLine(cliente);
-                }
+                string sql = @"SELECT a.*, f.c FROM actor a INNER JOIN
+(SELECT TOP(5) a.actor_id, COUNT(*) AS c 
+FROM actor a INNER JOIN film_actor fa ON a.actor_id = fa.actor_id
+GROUP BY a.actor_id
+ORDER BY c DESC) f On a.actor_id = f.actor_id";
 
-                Console.WriteLine("\nFuncionários:");
-                foreach(var func in context.Funcionarios) {
-                    Console.WriteLine(func);
+                var atoresMaisAtuantes = context.Atores.FromSql(sql)
+                    .Include(a=>a.Filmes);
+                    
+                foreach(var ator in atoresMaisAtuantes) {
+                    Console.WriteLine($"O ator {ator.PrimeiroNome} {ator.UltimoNome} atuou em {ator.Filmes.Count} filmes");
                 }
-
+                
             }
         }
     }
