@@ -14,11 +14,8 @@ namespace Alura.Filmes.App {
 
                 context.LogSQLToConsole();
 
-                string sql = @"SELECT a.*, f.c FROM actor a INNER JOIN
-(SELECT TOP(5) a.actor_id, COUNT(*) AS c 
-FROM actor a INNER JOIN film_actor fa ON a.actor_id = fa.actor_id
-GROUP BY a.actor_id
-ORDER BY c DESC) f On a.actor_id = f.actor_id";
+                string sql = @"SELECT a.* FROM actor a INNER JOIN
+                            top5_most_starred_actors f On a.actor_id = f.actor_id";
 
                 var atoresMaisAtuantes = context.Atores.FromSql(sql)
                     .Include(a=>a.Filmes);
